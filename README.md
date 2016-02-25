@@ -15,43 +15,48 @@ How to use it
 -------------
 
 This projects depends on jQuery and jQuery.ui . Load the lastfm-autocomplete.js,
-after those. After that, assembly and object that specifies `callback`,
-`modules` and `apiKey` (given by Last.fm). Pass that object to lfmComplete.
+after those. 
 
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="bower_components/jquery-ui/jquery-ui.js"></script>
-    <script type="text/javascript" src="lastfm-autocomplete.js"></script>
-    <script type="text/javascript">
-    <!--
+```html
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="bower_components/jquery-ui/jquery-ui.js"></script>
+<script type="text/javascript" src="lastfm-autocomplete.js"></script>
+```
 
-        function handleAutocompleteChoice(e, ui) {
-            var d = ui.item;
+After that, assembly and object that specifies `callback`, `modules` and
+`apiKey` (given by Last.fm). Pass that object to lfmComplete.
 
-            if (null !== d) {
-                $('#value').html(d.value);
-                $('#category').html(d.category);
-                $('#artist').html(d.artist);
-                $('#musicTitle').html(d.musicTitle);
-                $('#label').html('<pre>' + d.label + '</pre>');
-                $('#data').html(d.data);
-                $('#lastfm').html(JSON.stringify(d.lastfm));
-            }
+```js
+(function ($) {
+    'use strict';
+
+    function handleAutocompleteChoice(e, ui) {
+        var d = ui.item;
+
+        if (null !== d) {
+            $('#value').html(d.value);
+            $('#category').html(d.category);
+            $('#artist').html(d.artist);
+            $('#musicTitle').html(d.musicTitle);
+            $('#label').html('<pre>' + d.label + '</pre>');
+            $('#data').html(d.data);
+            $('#lastfm').html(JSON.stringify(d.lastfm));
         }
+    }
 
-        $(document).ready(function() {
-            var acOptions = {
-                callback: handleAutocompleteChoice,
-                modules: ['artist', 'album', 'track'],
-                apiKey: 'KEY'
-            };
+    $(document).ready(function() {
+        var acOptions = {
+            callback: handleAutocompleteChoice,
+            modules: ['artist', 'album', 'track'],
+            apiKey: 'KEY'
+        };
 
-            $('#search').lfmComplete(acOptions); // '#search' is the input element.
-        });
-       
-    -->
-    </script>
+        $('#search').lfmComplete(acOptions);
+    });
+}(jQuery));
+```
 
-
+You can also use `lastfm-autocomplete.css` to fix the layout.
 
 Example
 -------
@@ -63,3 +68,8 @@ Sites using
 -----------
 
 - [Amuzi](http://amuzi.me).
+
+License
+-------
+
+MIT c 2016 [Diogo Oliveira de Melo](http://diogomelo.net).
