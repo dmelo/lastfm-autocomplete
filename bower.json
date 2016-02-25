@@ -1,0 +1,23 @@
+{
+  "name": "lastfm-autocomplete",
+  "authors": [
+    "Diogo Oliveira de Melo <dmelo87@gmail.com>"
+  ],
+  "description": "Autocomplete feature using Last.fm API",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "jquery-ui": "^1.11.4",
+    "bootstrap": "^3.3.6"
+  }
+}
