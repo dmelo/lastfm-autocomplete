@@ -15,13 +15,40 @@
         }
     }
 
-    $(document).ready(function() {
+    function bindLfmAutocomplete() {
+        // Autocomplete options.
         var acOptions = {
             callback: handleAutocompleteChoice,
-            modules: ['artist', 'album', 'track'],
+            modules: [],
             apiKey: 'KEY'
         };
 
+        // See what modules, among ['artist', 'album', 'track'], are checked.
+        var modules = [];
+        $('.music-type').each(function(key, value) {
+            if ($(this).is(':checked')) {
+                modules.push($(this).attr('id'));
+            }
+        });
+        acOptions.modules = modules;
+
+        // if lfmAutocomplete is already placed, remove it.
+        if ($('#search').data('custom-lfmAutocomplete')) {
+            $('#search').lfmAutocomplete("destroy");
+            $('#search').removeData('custom-lfmAutocomplete');
+        }
+
+        // bind autocomplete.
         $('#search').lfmComplete(acOptions);
+    }
+
+    $(document).ready(function() {
+        $('.music-type').on('change', function(e) {
+            // rebind lfmAutocomplete when checkbox items changes.
+            bindLfmAutocomplete();
+        });
+
+        // First time it binds lfmAutocomplete.
+        bindLfmAutocomplete();
     });
 }(jQuery));

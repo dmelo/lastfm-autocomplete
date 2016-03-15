@@ -121,32 +121,13 @@
     /**
      * Make a set of requests to Last.fm API.
      */
-    function makeRequestSet(request, response) {
-        var baseUrl = 'http://ws.audioscrobbler.com/2.0/',
-            key,
-            optionSet;
-
-        for (key in moduleList) {
-            if (['artist', 'album', 'track'].indexOf(moduleList[key]) >= 0) {
-                globalResponse = response;
-                optionSet = {
-                    method: moduleList[key] + ".search",
-                    api_key: apiKey,
-                    limit: 5,
-                    format: 'json'
-                };
-                optionSet[moduleList[key]] = request.term;
-                $.get(baseUrl, optionSet, callbackAutocomplete, 'json').error(acError);
-            }
-        }
-    }
 
     // TODO: remove this function from this file.
     function openAutocomplete() {
         $('.ui-autocomplete').addClass(0 === $('#userId').length ? 'ui-autocomplete-logout' : 'ui-autocomplete-login');
     }
 
-    $.widget("custom.catcomplete", $.ui.autocomplete, {
+    $.widget("custom.lfmAutocomplete", $.ui.autocomplete, {
         _renderMenu: function (ul, items) {
             var that = this,
                 currentCategory = "";
@@ -171,9 +152,6 @@
         return a;
     };
 
-
-
-
     /**
      * Provide Last.fm autocomplete feature to the target input.
      */
@@ -183,7 +161,25 @@
                 noResults: ''
             },
             open: openAutocomplete,
-            source: makeRequestSet
+            source: function(request, response) {
+                var baseUrl = 'http://ws.audioscrobbler.com/2.0/',
+                    key,
+                    optionSet;
+
+                for (key in moduleList) {
+                    if (['artist', 'album', 'track'].indexOf(moduleList[key]) >= 0) {
+                        globalResponse = response;
+                        optionSet = {
+                            method: moduleList[key] + ".search",
+                            api_key: apiKey,
+                            limit: 5,
+                            format: 'json'
+                        };
+                        optionSet[moduleList[key]] = request.term;
+                        $.get(baseUrl, optionSet, callbackAutocomplete, 'json').error(acError);
+                    }
+                }
+            }
         };
 
         // Evaluate options.callback
@@ -207,6 +203,7 @@
             apiKey = options.apiKey;
         }
 
-        this.catcomplete(acOption);
+        this.lfmAutocomplete(acOption);
     };
+
 }(jQuery));
