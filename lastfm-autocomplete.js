@@ -162,7 +162,7 @@
             },
             open: openAutocomplete,
             source: function(request, response) {
-                var baseUrl = 'http://ws.audioscrobbler.com/2.0/',
+                var baseUrl = window.location.protocol + '//ws.audioscrobbler.com/2.0/',
                     key,
                     optionSet;
 
