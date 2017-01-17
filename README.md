@@ -61,7 +61,7 @@ You can also use `lastfm-autocomplete.css` to fix the layout.
 Example
 -------
 
-Access the [online demo](http://diogomelo.net/lastfm-autocomplete/) or
+Access the [online demo](http://lastfm-autocomplete.amuzi.me/) or
 download/clone the project and point your browser to `index.html`. Don't forget
 to change the apiKey var inside the `exemple.js` file. Follow the instructions
 on [Last.fm/api](http://www.last.fm/api) to get your Last.fm API key.
