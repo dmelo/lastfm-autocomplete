@@ -1,6 +1,8 @@
 Lastfm-Autocomplete
 ===================
 
+[![DOI](https://zenodo.org/badge/52486583.svg)](https://zenodo.org/badge/latestdoi/52486583)
+
 Provides autocomplete/type ahead feature for [Last.fm](https://last.fm)'s music
 related data. It includes three categories: artist, album and track.
 
